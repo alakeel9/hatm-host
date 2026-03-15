@@ -4,10 +4,10 @@ import { MessageSquare, Mail, LayoutTemplate, Users, QrCode, CheckCircle, ArrowL
 import { Button } from "@/components/ui/button";
 
 const sectionAnim = {
-  initial: { opacity: 0, y: 12 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+  initial: { opacity: 0, y: 12 } as const,
+  whileInView: { opacity: 1, y: 0 } as const,
+  viewport: { once: true } as const,
+  transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] },
 };
 
 const services = [
