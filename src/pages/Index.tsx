@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MessageSquare, Mail, LayoutTemplate, Users, QrCode, CheckCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hatmLogo from "@/assets/hatm-logo.png";
 
 const sectionAnim = {
   initial: { opacity: 0, y: 12 } as const,
@@ -32,9 +33,7 @@ export default function Index() {
       <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-hatm-sm">
         <div className="container mx-auto flex items-center justify-between h-16 px-4">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">حاتم</span>
-            </div>
+            <img src={hatmLogo} alt="حاتم - HATM Host" className="h-10 w-auto" />
             <span className="font-semibold text-lg text-foreground">HATM Host</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
