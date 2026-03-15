@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MessageSquare, Mail, LayoutTemplate, Users, QrCode, CheckCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import hatmLogo from "@/assets/hatm-logo.png";
 
 const sectionAnim = {
   initial: { opacity: 0, y: 12 } as const,
