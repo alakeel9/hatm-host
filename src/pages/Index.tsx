@@ -39,6 +39,8 @@ export default function Index() {
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <a href="#services" className="hover:text-foreground transition-colors">الخدمات</a>
             <a href="#packages" className="hover:text-foreground transition-colors">الباقات</a>
+            <Link to="/marketplace" className="hover:text-foreground transition-colors">سوق المزودين</Link>
+            <Link to="/templates" className="hover:text-foreground transition-colors">قوالب الدعوات</Link>
             <Link to="/admin" className="hover:text-foreground transition-colors">لوحة التحكم</Link>
           </div>
           <div className="flex items-center gap-3">
