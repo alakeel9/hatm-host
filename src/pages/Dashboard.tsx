@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { CalendarDays, Users, CheckCircle, Clock, XCircle, Send, QrCode, BarChart3, ArrowRight } from "lucide-react";
+import { CalendarDays, Users, CheckCircle, Clock, XCircle, Send, QrCode, BarChart3, ArrowRight, LayoutTemplate, ShoppingBag, ScanLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const metrics = [
@@ -30,11 +30,9 @@ const statusMap: Record<string, { label: string; class: string }> = {
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
-      {/* Header */}
       <div className="h-16 flex items-center justify-between px-6 shadow-hatm-sm bg-card">
         <Link to="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-          <ArrowRight className="w-4 h-4" />
-          <span className="text-sm">الرئيسية</span>
+          <ArrowRight className="w-4 h-4" /><span className="text-sm">الرئيسية</span>
         </Link>
         <h1 className="font-semibold">لوحة التحكم</h1>
         <div className="w-20" />
@@ -42,11 +40,7 @@ export default function Dashboard() {
 
       <div className="container mx-auto px-4 py-8 max-w-5xl space-y-8">
         {/* Event Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-card rounded-xl p-6 shadow-hatm-sm"
-        >
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="bg-card rounded-xl p-6 shadow-hatm-sm">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
               <h2 className="text-xl font-bold">حفل زفاف أحمد وسارة</h2>
@@ -54,9 +48,10 @@ export default function Dashboard() {
                 <CalendarDays className="w-4 h-4" /> 15 أبريل 2026 • الرياض
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
+              <Link to="/templates"><Button variant="outline" size="sm" className="shadow-hatm-sm"><LayoutTemplate className="w-4 h-4 ml-1" /> قوالب الدعوات</Button></Link>
               <Link to="/rsvp"><Button variant="outline" size="sm" className="shadow-hatm-sm"><Send className="w-4 h-4 ml-1" /> إرسال دعوات</Button></Link>
-              <Button size="sm" className="bg-primary text-primary-foreground shadow-hatm-sm"><QrCode className="w-4 h-4 ml-1" /> رموز QR</Button>
+              <Link to="/qr-scanner"><Button size="sm" className="bg-primary text-primary-foreground shadow-hatm-sm"><ScanLine className="w-4 h-4 ml-1" /> ماسح QR</Button></Link>
             </div>
           </div>
         </motion.div>
@@ -64,13 +59,7 @@ export default function Dashboard() {
         {/* Metrics */}
         <div className="grid grid-cols-3 gap-4">
           {metrics.map((m, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.08 }}
-              className="bg-card rounded-xl p-5 shadow-hatm-sm text-center"
-            >
+            <motion.div key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }} className="bg-card rounded-xl p-5 shadow-hatm-sm text-center">
               <m.icon className={`w-6 h-6 mx-auto mb-2 ${m.color}`} />
               <p className="text-2xl font-bold tabular-nums">{m.value}</p>
               <p className="text-sm text-muted-foreground">{m.label}</p>
@@ -79,12 +68,7 @@ export default function Dashboard() {
         </div>
 
         {/* Guest List */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-card rounded-xl shadow-hatm-sm overflow-hidden"
-        >
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-card rounded-xl shadow-hatm-sm overflow-hidden">
           <div className="p-5 flex items-center justify-between">
             <h3 className="font-semibold text-lg">قائمة الضيوف</h3>
             <span className="text-sm text-muted-foreground">{guests.length} ضيف</span>
@@ -124,18 +108,22 @@ export default function Dashboard() {
         </motion.div>
 
         {/* Quick Links */}
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-4 gap-4">
           <Link to="/admin" className="bg-card rounded-xl p-5 shadow-hatm-sm hover:shadow-hatm-md transition-shadow text-center">
             <BarChart3 className="w-6 h-6 mx-auto mb-2 text-primary" />
-            <p className="font-medium">بوابة الإدارة</p>
+            <p className="font-medium text-sm">بوابة الإدارة</p>
+          </Link>
+          <Link to="/marketplace" className="bg-card rounded-xl p-5 shadow-hatm-sm hover:shadow-hatm-md transition-shadow text-center">
+            <ShoppingBag className="w-6 h-6 mx-auto mb-2 text-primary" />
+            <p className="font-medium text-sm">سوق المزودين</p>
           </Link>
           <Link to="/vendor" className="bg-card rounded-xl p-5 shadow-hatm-sm hover:shadow-hatm-md transition-shadow text-center">
             <Users className="w-6 h-6 mx-auto mb-2 text-primary" />
-            <p className="font-medium">بوابة المزودين</p>
+            <p className="font-medium text-sm">بوابة المزودين</p>
           </Link>
           <Link to="/coordinator" className="bg-card rounded-xl p-5 shadow-hatm-sm hover:shadow-hatm-md transition-shadow text-center">
             <CalendarDays className="w-6 h-6 mx-auto mb-2 text-primary" />
-            <p className="font-medium">بوابة المنسقين</p>
+            <p className="font-medium text-sm">بوابة المنسقين</p>
           </Link>
         </div>
       </div>
