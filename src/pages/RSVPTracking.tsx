@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Send, MessageSquare, Mail, Smartphone, Link2, Copy, CheckCircle } from "lucide-react";
+import { ArrowRight, Send, MessageSquare, Mail, Smartphone, Link2, Copy, CheckCircle, LayoutTemplate } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -32,8 +32,20 @@ export default function RSVPTracking() {
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-2xl space-y-8">
+        {/* Template Selection Link */}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="bg-primary/5 rounded-xl p-4 shadow-hatm-sm flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <LayoutTemplate className="w-5 h-5 text-primary" />
+            <div>
+              <p className="font-medium text-sm">اختر قالب الدعوة أولاً</p>
+              <p className="text-xs text-muted-foreground">تصفح القوالب المتاحة واختر التصميم المناسب</p>
+            </div>
+          </div>
+          <Link to="/templates"><Button size="sm" className="bg-primary text-primary-foreground shadow-hatm-sm">تصفح القوالب</Button></Link>
+        </motion.div>
+
         {/* Send Method */}
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
           <h2 className="text-xl font-bold mb-4">اختر طريقة الإرسال</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {sendMethods.map(m => (
@@ -51,8 +63,15 @@ export default function RSVPTracking() {
           </div>
         </motion.div>
 
+        {/* Preview Link */}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-center">
+          <Link to={`/delivery-preview/${method}`}>
+            <Button variant="outline" className="shadow-hatm-sm">معاينة كيف ستظهر الدعوة للضيف</Button>
+          </Link>
+        </motion.div>
+
         {/* Tracking Link */}
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-card rounded-xl p-5 shadow-hatm-sm">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="bg-card rounded-xl p-5 shadow-hatm-sm">
           <h3 className="font-semibold mb-3">رابط التتبع المستقل</h3>
           <div className="flex gap-2">
             <Input value="https://hatm.host/rsvp/abc123" readOnly className="shadow-hatm-sm text-sm font-mono" dir="ltr" />

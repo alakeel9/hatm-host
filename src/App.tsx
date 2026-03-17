@@ -13,6 +13,12 @@ import CoordinatorPortal from "./pages/CoordinatorPortal";
 import RSVPTracking from "./pages/RSVPTracking";
 import ManualManagement from "./pages/ManualManagement";
 import Checkout from "./pages/Checkout";
+import InvitationTemplates from "./pages/InvitationTemplates";
+import DeliveryPreview from "./pages/DeliveryPreview";
+import QRScanner from "./pages/QRScanner";
+import VendorMarketplace from "./pages/VendorMarketplace";
+import Reports from "./pages/Reports";
+import Invoices from "./pages/Invoices";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +38,12 @@ const App = () => (
           <Route path="/rsvp" element={<RSVPTracking />} />
           <Route path="/manual" element={<ManualManagement />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/templates" element={<InvitationTemplates />} />
+          <Route path="/delivery-preview/:method" element={<DeliveryPreview />} />
+          <Route path="/qr-scanner" element={<QRScanner />} />
+          <Route path="/marketplace" element={<VendorMarketplace />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/invoices" element={<Invoices />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

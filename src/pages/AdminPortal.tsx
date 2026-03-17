@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, Users, CalendarDays, FileText, Settings, Flower2, UtensilsCrossed, Camera, Building, Armchair, CakeSlice } from "lucide-react";
+import { ArrowRight, BarChart3, Users, CalendarDays, FileText, Settings, Flower2, UtensilsCrossed, Camera, Building, Armchair, CakeSlice, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const tabs = ["نظرة عامة", "المزودين", "التقارير", "الفواتير"];
 
 const events = [
   { name: "زفاف أحمد وسارة", date: "15 أبريل 2026", guests: 120, status: "active" },
@@ -114,7 +112,10 @@ export default function AdminPortal() {
 
         {activeTab === 1 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-            <h2 className="text-2xl font-bold">إدارة المزودين</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">إدارة المزودين</h2>
+              <Link to="/marketplace"><Button variant="outline" size="sm" className="shadow-hatm-sm"><ExternalLink className="w-3 h-3 ml-1" /> سوق المزودين</Button></Link>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {vendors.map((v, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-card rounded-xl p-5 shadow-hatm-sm">
@@ -138,7 +139,10 @@ export default function AdminPortal() {
 
         {activeTab === 2 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-            <h2 className="text-2xl font-bold">التقارير</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">التقارير</h2>
+              <Link to="/reports"><Button className="bg-primary text-primary-foreground shadow-hatm-sm" size="sm"><ExternalLink className="w-3 h-3 ml-1" /> تقارير مفصلة</Button></Link>
+            </div>
             <div className="bg-card rounded-xl p-8 shadow-hatm-sm text-center">
               <BarChart3 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground">تقارير RSVP وتحليلات الحضور ومسح QR</p>
@@ -153,7 +157,10 @@ export default function AdminPortal() {
 
         {activeTab === 3 && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
-            <h2 className="text-2xl font-bold">الفواتير</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">الفواتير</h2>
+              <Link to="/invoices"><Button className="bg-primary text-primary-foreground shadow-hatm-sm" size="sm"><ExternalLink className="w-3 h-3 ml-1" /> عرض الكل</Button></Link>
+            </div>
             <div className="bg-card rounded-xl shadow-hatm-sm overflow-hidden">
               <table className="w-full text-sm">
                 <thead><tr className="bg-muted/30">
