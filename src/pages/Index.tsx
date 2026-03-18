@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { MessageSquare, Mail, LayoutTemplate, Users, QrCode, CheckCircle, ArrowLeft } from "lucide-react";
+import { MessageSquare, Mail, LayoutTemplate, Users, QrCode, CheckCircle, ArrowLeft, MapPin, Phone, AtSign, Instagram, Facebook, Linkedin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import hatmLogo from "@/assets/hatm-logo.png";
 
 const sectionAnim = {
@@ -26,7 +29,41 @@ const packages = [
   { name: "اشتراك شهري", nameEn: "Monthly", price: "499", features: ["أحداث غير محدودة", "كل مزايا الحدث الواحد", "أولوية الدعم", "تحليلات متقدمة", "API مخصص"], cta: "اشترك الآن" },
 ];
 
+const quickLinks = [
+  { label: "من نحن", href: "#about" },
+  { label: "الخدمات", href: "#services" },
+  { label: "الباقات", href: "#packages" },
+  { label: "سوق المزودين", to: "/marketplace" },
+  { label: "تواصل معنا", href: "#contact" },
+];
+
+const socialLinks = [
+  { icon: Instagram, label: "Instagram" },
+  { icon: (props: any) => <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>, label: "X (Twitter)" },
+  { icon: Facebook, label: "Facebook" },
+  { icon: Linkedin, label: "LinkedIn" },
+  { icon: (props: any) => <svg {...props} viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>, label: "TikTok" },
+];
+
 export default function Index() {
+  const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [formErrors, setFormErrors] = useState<Record<string, boolean>>({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const errors: Record<string, boolean> = {};
+    if (!contactForm.name.trim()) errors.name = true;
+    if (!contactForm.email.trim()) errors.email = true;
+    if (!contactForm.message.trim()) errors.message = true;
+    setFormErrors(errors);
+    if (Object.keys(errors).length === 0) {
+      setFormSubmitted(true);
+      setContactForm({ name: "", email: "", phone: "", message: "" });
+      setTimeout(() => setFormSubmitted(false), 4000);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       {/* Nav */}
@@ -166,9 +203,138 @@ export default function Index() {
       </motion.section>
 
       {/* Footer */}
-      <footer className="bg-card shadow-hatm-sm py-10">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2026 HATM Host — ضيافة حاتم. جميع الحقوق محفوظة.</p>
+      <footer id="contact" className="bg-primary text-primary-foreground">
+        {/* Main Footer */}
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            {/* Brand & Contact Info */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <img src={hatmLogo} alt="حاتم" className="h-10 w-auto brightness-0 invert" />
+                <span className="font-bold text-lg">HATM Host</span>
+              </div>
+              <p className="text-primary-foreground/70 text-sm leading-relaxed">
+                منصة متكاملة لإدارة المناسبات والضيافة بأعلى معايير الجودة والاحترافية.
+              </p>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3">
+                  <MapPin className="w-4 h-4 shrink-0 text-primary-foreground/60" />
+                  <span>الرياض - المملكة العربية السعودية</span>
+                </div>
+                <a href="tel:050000000000" className="flex items-center gap-3 hover:text-accent transition-colors">
+                  <Phone className="w-4 h-4 shrink-0 text-primary-foreground/60" />
+                  <span dir="ltr">050 000 000 00</span>
+                </a>
+                <a href="mailto:info@hatmhost.com" className="flex items-center gap-3 hover:text-accent transition-colors">
+                  <AtSign className="w-4 h-4 shrink-0 text-primary-foreground/60" />
+                  <span>info@hatmhost.com</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-semibold text-base mb-5">روابط سريعة</h4>
+              <ul className="space-y-3 text-sm">
+                {quickLinks.map((link, i) => (
+                  <li key={i}>
+                    {link.to ? (
+                      <Link to={link.to} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={link.href} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                        {link.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Social Media */}
+            <div>
+              <h4 className="font-semibold text-base mb-5">تابعنا</h4>
+              <div className="flex flex-wrap gap-3 mb-4">
+                {socialLinks.map((social, i) => (
+                  <motion.a
+                    key={i}
+                    href={`https://${social.label.toLowerCase().replace(/\s*\(.*\)/, "")}.com/hatmhost`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.15, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
+                    title={social.label}
+                  >
+                    <social.icon className="w-5 h-5" />
+                  </motion.a>
+                ))}
+              </div>
+              <p className="text-primary-foreground/50 text-sm">@hatmhost</p>
+            </div>
+
+            {/* Contact Form */}
+            <div>
+              <h4 className="font-semibold text-base mb-5">تواصل معنا</h4>
+              {formSubmitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-primary-foreground/10 rounded-xl p-6 text-center"
+                >
+                  <CheckCircle className="w-8 h-8 mx-auto mb-2 text-success" />
+                  <p className="font-medium">تم الإرسال بنجاح!</p>
+                  <p className="text-sm text-primary-foreground/70 mt-1">سنتواصل معك قريباً</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleContactSubmit} className="space-y-3">
+                  <Input
+                    placeholder="الاسم *"
+                    value={contactForm.name}
+                    onChange={(e) => { setContactForm({ ...contactForm, name: e.target.value }); setFormErrors({ ...formErrors, name: false }); }}
+                    className={`bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 h-9 text-sm ${formErrors.name ? "border-accent ring-1 ring-accent" : ""}`}
+                  />
+                  <Input
+                    type="email"
+                    placeholder="البريد الإلكتروني *"
+                    value={contactForm.email}
+                    onChange={(e) => { setContactForm({ ...contactForm, email: e.target.value }); setFormErrors({ ...formErrors, email: false }); }}
+                    className={`bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 h-9 text-sm ${formErrors.email ? "border-accent ring-1 ring-accent" : ""}`}
+                  />
+                  <Input
+                    type="tel"
+                    placeholder="رقم الهاتف (اختياري)"
+                    value={contactForm.phone}
+                    onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 h-9 text-sm"
+                  />
+                  <Textarea
+                    placeholder="الرسالة *"
+                    rows={3}
+                    value={contactForm.message}
+                    onChange={(e) => { setContactForm({ ...contactForm, message: e.target.value }); setFormErrors({ ...formErrors, message: false }); }}
+                    className={`bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 text-sm min-h-[70px] ${formErrors.message ? "border-accent ring-1 ring-accent" : ""}`}
+                  />
+                  <Button type="submit" className="w-full bg-primary-foreground/15 hover:bg-primary-foreground/25 text-primary-foreground border border-primary-foreground/20 h-9 text-sm">
+                    <Send className="w-4 h-4 ml-2" />
+                    إرسال
+                  </Button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-primary-foreground/10">
+          <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-primary-foreground/50">
+            <p>© 2026 HATM Host — ضيافة حاتم. جميع الحقوق محفوظة.</p>
+            <div className="flex gap-4">
+              <a href="#" className="hover:text-primary-foreground/80 transition-colors">سياسة الخصوصية</a>
+              <a href="#" className="hover:text-primary-foreground/80 transition-colors">الشروط والأحكام</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
