@@ -20,6 +20,8 @@ import QRScanner from "./pages/QRScanner";
 import VendorMarketplace from "./pages/VendorMarketplace";
 import Reports from "./pages/Reports";
 import Invoices from "./pages/Invoices";
+import ServiceListings from "./pages/ServiceListings";
+import Notifications from "./pages/Notifications";
 
 const queryClient = new QueryClient();
 
