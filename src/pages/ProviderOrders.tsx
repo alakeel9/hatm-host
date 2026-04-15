@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 type OrderStatus =
   | "pending"
@@ -55,6 +56,7 @@ const statusLabels: Record<OrderStatus, string> = {
 export default function ProviderOrdersPage() {
   const [orders, setOrders] = useState<Order[]>(mockOrders);
   const [filter, setFilter] = useState<OrderStatus | "all">("all");
+  const navigate = useNavigate();
 
   const filteredOrders =
     filter === "all"
@@ -71,7 +73,15 @@ export default function ProviderOrdersPage() {
     <div className="min-h-screen bg-background text-foreground p-6 space-y-6" dir="rtl">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">طلباتي</h1>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate("/")}
+            className="px-3 py-2 border border-border rounded hover:bg-muted transition-colors"
+          >
+            رجوع
+          </button>
+          <h1 className="text-2xl font-bold">طلباتي</h1>
+        </div>
         <select
           className="border border-border rounded-lg px-3 py-2 bg-card text-card-foreground"
           value={filter}
@@ -84,6 +94,12 @@ export default function ProviderOrdersPage() {
           <option value="completed">مكتمل</option>
           <option value="cancelled">ملغي</option>
         </select>
+      </div>
+
+      {/* Quick Navigation */}
+      <div className="flex gap-3 text-sm">
+        <Link to="/" className="text-primary hover:underline">الرئيسية</Link>
+        <Link to="/provider-orders" className="text-primary hover:underline">طلباتي</Link>
       </div>
 
       {/* Orders Grid */}
