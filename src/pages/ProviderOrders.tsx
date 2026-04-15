@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 type OrderStatus =
   | "pending"
@@ -55,6 +56,7 @@ const statusLabels: Record<OrderStatus, string> = {
 export default function ProviderOrdersPage() {
   const [orders, setOrders] = useState<Order[]>(mockOrders);
   const [filter, setFilter] = useState<OrderStatus | "all">("all");
+  const navigate = useNavigate();
 
   const filteredOrders =
     filter === "all"
