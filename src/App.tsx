@@ -22,6 +22,7 @@ import Reports from "./pages/Reports";
 import Invoices from "./pages/Invoices";
 import ServiceListings from "./pages/ServiceListings";
 import Notifications from "./pages/Notifications";
+import ProviderOrders from "./pages/ProviderOrders";
 
 const queryClient = new QueryClient();
 
