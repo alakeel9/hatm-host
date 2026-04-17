@@ -16,7 +16,7 @@ export default function SiteLayout() {
       <div className="flex-1">
         <Outlet />
       </div>
-      <SiteFooter />
+      {!isHome && <SiteFooter />}
     </div>
   );
 }
