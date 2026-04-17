@@ -23,6 +23,7 @@ import Invoices from "./pages/Invoices";
 import ServiceListings from "./pages/ServiceListings";
 import Notifications from "./pages/Notifications";
 import ProviderOrders from "./pages/ProviderOrders";
+import SiteLayout from "./components/SiteLayout";
 
 const queryClient = new QueryClient();
 
@@ -33,25 +34,27 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/admin" element={<AdminPortal />} />
-          <Route path="/vendor" element={<VendorPortal />} />
-          <Route path="/coordinator" element={<CoordinatorPortal />} />
-          <Route path="/rsvp" element={<RSVPTracking />} />
-          <Route path="/manual" element={<ManualManagement />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/templates" element={<InvitationTemplates />} />
-          <Route path="/delivery-preview/:method" element={<DeliveryPreview />} />
-          <Route path="/qr-scanner" element={<QRScanner />} />
-          <Route path="/marketplace" element={<VendorMarketplace />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/invoices" element={<Invoices />} />
-          <Route path="/services" element={<ServiceListings />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/provider-orders" element={<ProviderOrders />} />
-          <Route path="*" element={<NotFound />} />
+          <Route element={<SiteLayout />}>
+            <Route path="/" element={<Index />} />
+            <Route path="/chatbot" element={<Chatbot />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/admin" element={<AdminPortal />} />
+            <Route path="/vendor" element={<VendorPortal />} />
+            <Route path="/coordinator" element={<CoordinatorPortal />} />
+            <Route path="/rsvp" element={<RSVPTracking />} />
+            <Route path="/manual" element={<ManualManagement />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/templates" element={<InvitationTemplates />} />
+            <Route path="/delivery-preview/:method" element={<DeliveryPreview />} />
+            <Route path="/qr-scanner" element={<QRScanner />} />
+            <Route path="/marketplace" element={<VendorMarketplace />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/invoices" element={<Invoices />} />
+            <Route path="/services" element={<ServiceListings />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/provider-orders" element={<ProviderOrders />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
