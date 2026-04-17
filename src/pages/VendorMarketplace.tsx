@@ -135,7 +135,12 @@ export default function VendorMarketplace() {
           <ArrowRight className="w-4 h-4" /><span className="text-sm">العودة</span>
         </Link>
         <h1 className="font-semibold">سوق المزودين</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <Link to="/provider-orders">
+            <Button size="sm" variant="outline" className="shadow-hatm-sm">
+              دخول مزودي الخدمة
+            </Button>
+          </Link>
           {totalCartItems > 0 && (
             <span className="bg-primary text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full">{totalCartItems}</span>
           )}
