@@ -20,7 +20,7 @@ import QRScanner from "./pages/QRScanner";
 import VendorMarketplace from "./pages/VendorMarketplace";
 import Reports from "./pages/Reports";
 import Invoices from "./pages/Invoices";
-import ServiceListings from "./pages/ServiceListings";
+
 import Notifications from "./pages/Notifications";
 import ProviderOrders from "./pages/ProviderOrders";
 import SiteLayout from "./components/SiteLayout";
@@ -50,7 +50,7 @@ const App = () => (
             <Route path="/marketplace" element={<VendorMarketplace />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/invoices" element={<Invoices />} />
-            <Route path="/services" element={<ServiceListings />} />
+            <Route path="/services" element={<VendorMarketplace />} />
             <Route path="/notifications" element={<Notifications />} />
             <Route path="/provider-orders" element={<ProviderOrders />} />
             <Route path="*" element={<NotFound />} />

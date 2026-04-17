@@ -74,8 +74,7 @@ export default function Index() {
             <span className="font-semibold text-lg text-foreground">HATM Host</span>
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <Link to="/marketplace" className="hover:text-foreground transition-colors">سوق المزودين</Link>
-            <Link to="/services" className="hover:text-foreground transition-colors">الخدمات</Link>
+            <Link to="/marketplace" className="hover:text-foreground transition-colors">سوق المزودين والخدمات</Link>
             <Link to="/notifications" className="hover:text-foreground transition-colors">الإشعارات</Link>
             
             <Link to="/admin" className="hover:text-foreground transition-colors">لوحة التحكم</Link>
