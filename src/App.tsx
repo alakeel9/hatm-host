@@ -21,7 +21,7 @@ import VendorMarketplace from "./pages/VendorMarketplace";
 import Reports from "./pages/Reports";
 import Invoices from "./pages/Invoices";
 
-import Notifications from "./pages/Notifications";
+
 import ProviderOrders from "./pages/ProviderOrders";
 import SiteLayout from "./components/SiteLayout";
 
