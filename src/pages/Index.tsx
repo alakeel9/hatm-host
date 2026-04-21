@@ -75,7 +75,6 @@ export default function Index() {
           </Link>
           <div className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
             <Link to="/marketplace" className="hover:text-foreground transition-colors">سوق المزودين والخدمات</Link>
-            <Link to="/notifications" className="hover:text-foreground transition-colors">الإشعارات</Link>
             
             <Link to="/admin" className="hover:text-foreground transition-colors">لوحة التحكم</Link>
           </div>

@@ -7,7 +7,7 @@ export default function SiteLayout() {
   const isHome = location.pathname === "/";
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col sadu-pattern">
       {!isHome && (
         <Link
           to="/"
