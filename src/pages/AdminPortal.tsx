@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, BarChart3, Users, CalendarDays, FileText, Settings, Flower2, UtensilsCrossed, Camera, Building, Armchair, CakeSlice, ExternalLink } from "lucide-react";
+import { ArrowRight, BarChart3, Users, CalendarDays, FileText, Settings, Flower2, UtensilsCrossed, Camera, Building, Armchair, CakeSlice, ExternalLink, Bell, BellOff, Check, CheckCheck, Trash2, Mail, Smartphone, MessageSquare, ShoppingBag, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const events = [
