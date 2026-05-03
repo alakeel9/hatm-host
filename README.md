@@ -89,3 +89,5 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+
+![badge](https://img.shields.io/badge/status-active-brightgreen)
